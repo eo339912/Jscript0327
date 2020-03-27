@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>getBoardList.html</title>
+<style>
+        table {
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+         tr td, tr th {
+            border: 1px solid #444;
+            padding: 5px 10px
+        }
+    </style>
+</head>
+<body>
+	<div id ="show"></div>
+	<script>
+		var xhtp = new XMLHttpRequest();
+	    xhtp.onreadystatechange = function(){
+	       //console.log("readyState: " + xhtp.readyState + ", status: " + xhtp.status);
+	       if(xhtp.readyState == 4 && xhtp.status ==200){
+	          var parsedData = JSON.parse(xhtp.responseText)
+	          console.log(xhtp.responseText); 
+	          console.log(parsedData);
+	          showPage(parsedData);
+	          
+	       }
+	    }
+	    xhtp.open("get", "../GetBoardListServlet");
+	    xhtp.send();
+	</script>
+</body>
+</html>
