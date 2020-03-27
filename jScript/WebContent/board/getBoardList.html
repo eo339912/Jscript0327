@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>getBoardList.html</title>
+<style>
+        table {
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+         tr td, tr th {
+            border: 1px solid #444;
+            padding: 5px 10px
+        }
+    </style>
+</head>
+<body>
+	<div id ="show"></div>
+	<script>
+		var show = document.getElementById("show");
+	    var $tbl, $tr, $td, $th, $text;
+		var $title = ["board_no", "writer", "content", "board_date"];
+		$tb1 = document.createElement("table");
+
+		var xhtp = new XMLHttpRequest();
+	    xhtp.onreadystatechange = function(){
+	       if(xhtp.readyState == 4 && xhtp.status ==200){
+			//console.log(xhtp.responseText); 
+			var datas = JSON.parse(xhtp.responseText)
+	        console.log(datas); 
+
+			$tr = document.createElement("tr");
+			for(o of $title){
+				$th = document.createElement("th");
+				$text = document.createTextNode(o);
+				$th.appendChild($text);
+				$tr.appendChild($th);
+			}
+			$tb1.appendChild($tr);
+			
+			datas.forEach(function(data){
+				$tr = document.createElement("tr");
+				
+				for(o of $title){
+					$td = document.createElement("td");
+
+					$text = document.createTextNode(data[o]);
+
+					$td.appendChild($text);
+					$tr.appendChild($td);
+
+
+				}
+				
+				$tb1.appendChild($tr);
+				
+
+			  });
+
+			  
+			show.appendChild($tb1)          
+	       }
+	    }
+	    xhtp.open("get", "../GetBoardListServlet");
+	    xhtp.send();
+		
+		
+	    
+
+	</script>
+</body>
+</html>
