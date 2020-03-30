@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="add">Add Row</button>
+    <ul id="parentList">
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+    </ul>
+
+    <script>
+        var lis = document.querySelectorAll("ul li");
+
+        lis.forEach(function(a, b, c){
+            a.addEventListener("mouseover", function(){
+                a.style.backgroundColor = '#333';
+                a.style.color = '#fff';
+            });
+
+            a.addEventListener("mouseout", function(){
+                a.style.backgroundColor = '';
+                a.style.color = '#000';
+            });
+
+            a.addEventListener("click", function(){
+                //var text = a.innerHTML;
+                //console.log(text);
+
+                //var $li = document.createElement('li');
+                //var $text =document.createTextNode(text + '-1');
+                //$li.appendChild($text);
+                //a.after($li);
+                //a.style.display= 'none';
+                
+                var inputs = document.querySelectorAll("#parentList input");
+                inputs.forEach(function(obj){
+                    obj.parentNode.remove(); //li
+                });
+                lis.forEach(function(objs){
+                    if(objs.style.display == "none")
+                    objs.style.display = "";
+                })
+               
+                var text = a.innerHTML;
+                var $li = document.createElement('li');
+                var $input = document.createElement('input');
+                
+                
+
+                $input.value = text; //$input.setAttribute("value", text)
+                $li.appendChild($input);
+                a.after($li);
+                var $button = document.createElement('button');
+                $input.after($button);
+                var $text =document.createTextNode("클릭");
+                $button.appendChild($text);
+                
+                a.style.display= 'none';
+
+                
+                $button.addEventListener("click", function(){
+                    // var $input_text = document.createTextNode($input.value);
+                    // $li.appendChild($input_text);
+                    // a.after($li); 
+                    // $button.style.display = "none";
+                    // $input.style.display= "none"; 
+                   var $inputText =document.createTextNode($input.value);
+                   a.appendChild($inputText);
+                    
+                   a.style.display= 'block';
+                   this.parentElement.style.display= 'none';
+
+                });
+
+             
+
+
+
+                
+
+            });
+
+        });
+
+
+        var numbers = ["Four", "Five", "Six"];
+        var $add = document.getElementById('add');
+        console.log($add);
+        $add.innerHTML = '한줄추가';    
+        
+        var numbersIdx = 0;
+
+        $add.addEventListener("click", function(e){
+            //console.log(e);
+            var $li = document.createElement('li');
+
+            $li.addEventListener("mouseover", function(a){
+                a.target.style.backgroundColor = '#333'
+                a.target.style.color = '#fff'
+            });
+
+            $li.addEventListener("mouseout", function(a){
+                a.target.style.backgroundColor = ''
+                a.target.style.color = '#000'
+            });
+
+            $li.addEventListener("click", function(a){
+                a.target.style.display= 'none';
+            });
+
+            var $text =document.createTextNode(numbers[numbersIdx]); 
+            $li.appendChild($text);
+            numbersIdx++;
+            document.getElementById('parentList').appendChild($li);
+        });
+
+        
+
+        
+
+      
+        
+            
+    
+
+
+    </script>
+</body>
+</html>
