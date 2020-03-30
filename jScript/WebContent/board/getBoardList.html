@@ -16,10 +16,33 @@
     </style>
 </head>
 <body>
+	<div class="is_d">
+		<span>writer : </span><input type="text" name="" id="writer" value="user"><br>
+   		<span>content : </span><input type="text" name="" id="content" value="content"><br>
+ 
+   		<button onclick ="insertBoardFunc()">Click</button>	
+	</div>
+	<p><a href="getBoard.jsp?boardNo=3">page</a></p>
 	<div id ="show"></div>
 	<script>
+		//insert
+		function insertBoardFunc(){
+				var writer = document.getElementById('writer').value;
+	    		var content = document.getElementById('content').value;
+	            var xhtp = new XMLHttpRequest();
+	            xhtp.onreadystatechange = function(){
+	                console.log(xhtp.resposeText);
+	            }
+	            xhtp.open("post", "../InsertBoardServlet", true); //true 비동기, false : 동기
+	            xhtp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	            xhtp.send("bWriter=" + writer + "&bContent=" + content);
+	            
+	            window.location.reload(true);
+	   }
+	
+	
 		var show = document.getElementById("show");
-	    var $tbl, $tr, $td, $th, $text;
+	    var $tbl, $tr, $td, $th, $text, $a;
 		var $title = ["board_no", "writer", "content", "board_date"];
 		$tb1 = document.createElement("table");
 
@@ -44,12 +67,20 @@
 				
 				for(o of $title){
 					$td = document.createElement("td");
+					$a = document.createElement("a");
 
 					$text = document.createTextNode(data[o]);
+					
+					if(o == "board_no"){
+						$a.appendChild($text);
+						$a.setAttribute("href", "getBoard.jsp?boardNo=" + data[o]);
+						//$a.innerHTML = data[o];
+						$td.appendChild($a);
+					}else{
+						$td.appendChild($text);
+					}
 
-					$td.appendChild($text);
 					$tr.appendChild($td);
-
 
 				}
 				
@@ -59,14 +90,19 @@
 			  });
 
 			  
-			show.appendChild($tb1)          
+			show.appendChild($tb1);       
+			
 	       }
+		    
 	    }
+	   	
+	    
+	 
+	  
 	    xhtp.open("get", "../GetBoardListServlet");
 	    xhtp.send();
 		
-		
-	    
+	  
 
 	</script>
 </body>

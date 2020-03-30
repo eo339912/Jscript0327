@@ -28,7 +28,7 @@ public class BoardDAO {
 		}
 	}
 	
-	public Board getBoardInfo(int boardNO) {
+	public Board getBoardInfo(int boardNO) { //한건조회
 		String sql = "select board_no, content, writer, create_date from board "
 				+ "where board_no = ?" ;
 		
@@ -78,7 +78,7 @@ public class BoardDAO {
 	
 	public List<Board> getBoardList(){
 		
-		String sql = "select board_no, content, writer, create_date from board order by board_no desc";
+		String sql = "select board_no, content, writer, create_date from board order by board_no";
 		
 
 		

@@ -30,20 +30,15 @@ public class InsertBoardServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-				
-		//int boaderno = request.getParameter("bNo");
 		String writer = request.getParameter("bWriter");
 		String content = request.getParameter("bContent");
-		//String boaderdate = request.getParameter("bDate");
 		
 		System.out.println("bWriter : " +writer + ", bContent :" + content);
 		
 		//데이터베이스 입력 처리
 		Board bd = new Board();
-		//bd.setbNo(boaderno);
 		bd.setbWriter(writer);
 		bd.setbContent(content);
-		//bd.setbDate(boaderdate);
 		
 		BoardDAO dao = new BoardDAO();
 		dao.insertBoard(bd);
