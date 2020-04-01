@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>example.html</title>
+</head>
+<body>
+    <button id="menu" >메뉴</button>
+    <script>
+        var list = ['짜장면', '돈까스', '된장찌개', '김치찌개', '회덮밥'];
+
+        
+
+        var menu = document.getElementById("menu");
+        menu.onclick = function(){
+            var idx = Math.ceil(Math.random() * 4); 
+            window.alert(list[idx]);
+        }
+
+
+
+    </script>
+</body>
+</html>
