@@ -41,8 +41,8 @@ public class BasicExample {
 		Thread thread = new Thread(rcs);//쓰레드생성
 		thread.start();//신규쓰레드작업
 		
-		
-		Thread thread1 = new Thread(() -> {
+		//thread 클레스
+		Thread thread1 = new Thread(() -> { //runnable이 인터페이스
 			Toolkit tkit = Toolkit.getDefaultToolkit();
 			for(int i=0; i<10; i++) {
 				tkit.beep();
