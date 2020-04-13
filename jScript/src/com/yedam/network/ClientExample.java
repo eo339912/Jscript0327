@@ -137,15 +137,15 @@ public class ClientExample extends Application{
 		btnConn.setPrefSize(60, 30);
 		btnConn.setOnAction(event -> {
 			if(btnConn.getText().equals("start")) {
-				//startClient();
+				startClient();
 			}else if(btnConn.getText().equals("stop")) {
-				//stopClient();
+				stopClient();
 			}
 		});
 		btnSend = new Button("send");
 		btnSend.setPrefSize(60, 30);
 		btnSend.setDisable(true);
-		btnSend.setOnAction(event -> System.out.println()/*"메세지 보내는 기능"*/);
+		btnSend.setOnAction(event -> send(txtInput.getText()));
 		bottom.setCenter(txtInput);
 		bottom.setLeft(btnConn);
 		bottom.setRight(btnSend);
