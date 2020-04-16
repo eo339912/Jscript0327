@@ -145,7 +145,7 @@ public class ClientExample extends Application{
 		btnSend = new Button("send");
 		btnSend.setPrefSize(60, 30);
 		btnSend.setDisable(true);
-		btnSend.setOnAction(event -> send(txtInput.getText()));
+		btnSend.setOnAction(event -> send("[혜원]" +txtInput.getText()));
 		bottom.setCenter(txtInput);
 		bottom.setLeft(btnConn);
 		bottom.setRight(btnSend);

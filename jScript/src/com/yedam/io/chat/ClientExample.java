@@ -18,7 +18,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
+ 
 public class ClientExample extends Application {
 	Socket socket;
 
@@ -29,7 +29,7 @@ public class ClientExample extends Application {
 			public void run() {
 				try {
 					socket = new Socket();
-					socket.connect(new InetSocketAddress("192.168.0.69", 5001));
+					socket.connect(new InetSocketAddress("192.168.0.26", 5001));
 					Platform.runLater(() -> {
 						displayText("[연결 완료: " + socket.getRemoteSocketAddress() + "]");
 						btnConn.setText("stop");
@@ -143,7 +143,7 @@ public class ClientExample extends Application {
 		btnSend.setPrefSize(60, 30);
 		btnSend.setDisable(true);
 		btnSend.setOnAction(e -> {
-			send(txtInput.getText());
+			send("[혜원]" + txtInput.getText());
 			txtInput.setText("");
 		});
 
@@ -166,7 +166,7 @@ public class ClientExample extends Application {
 		root.setBottom(bottom);
 
 		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("app.css").toString());
+		//scene.getStylesheets().add(getClass().getResource("app.css").toString());
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Client");
 		primaryStage.setOnCloseRequest(event -> stopClient());

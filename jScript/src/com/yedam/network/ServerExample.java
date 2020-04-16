@@ -164,6 +164,25 @@ public class ServerExample extends Application{
 		}
 	}
 	
+	void receive() {
+		while (true) {
+			try {
+				byte[] byteArr = new byte[100];
+				InputStream inputStream = socket.getInputStream();
+
+				int readByteCount = inputStream.read(byteArr);
+				if (readByteCount == -1) {
+					throw new IOException();
+				}
+				String data = new String(byteArr, 0, readByteCount, "UTF-8");
+				Platform.runLater(() -> displayText("[받기 완료]" + data));
+			} catch (Exception e) {
+				Platform.runLater(() -> displayText("[서버 통신 안됨]"));
+				stopClient();
+				break;
+			}
+		}
+	}// end of receive()
 	public static void main(String[] args) {
 		launch(args);
 	}

@@ -31,7 +31,7 @@ public class ServerExample extends Application {
 
 		try {
 			serverSocket = new ServerSocket();
-			serverSocket.bind(new InetSocketAddress("192.168.0.69", 5001));
+			serverSocket.bind(new InetSocketAddress("192.168.0.26", 5001));
 
 		} catch (Exception e) {
 			if (!serverSocket.isClosed()) {
@@ -212,7 +212,7 @@ public class ServerExample extends Application {
 		root.setBottom(btnStartStop);
 
 		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("app.css").toString());
+		//scene.getStylesheets().add(getClass().getResource("app.css").toString());
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Server");
 		primaryStage.setOnCloseRequest(event -> stopServer());
