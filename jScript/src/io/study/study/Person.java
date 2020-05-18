@@ -1,4 +1,4 @@
-package com.yedam.study;
+package io.study.study;
 
 public class Person {
 	private String name;

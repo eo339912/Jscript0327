@@ -1,4 +1,4 @@
-package com.yedam.study;
+package io.study.study;
 
 import java.util.ArrayList;
 import java.util.List;
